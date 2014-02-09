@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  
+
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8HHfmcN7dXOzsUpRqDM_qfIkGGVUYe38&sensor=false&libraries=places"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+ <script src="map.js"></script>
+ <script src="app.js"></script>
+  
+
+  
+  
+
+  <!--TEMPLATES-->
+  <script type="text/template" id="home-controls">
+    <h4>My Locations </h4>
+    <a href="#/places">
+      <button type="button" class="btn btn-default btn-lg center-block">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </a>
+  </script>
+
+  <script type="text/template" class="form-horizontal" id="edit-place">
+    <form id="edit-place-form" onkeypress="return event.keyCode != 13";>
+      <div class="row">
+      <label>Name</label>
+      <input class="pull-right" type="text" name="name" value="<%=place.get('name')%>">
+      </div>
+      <div class="row">
+      <label>Address</label>
+      <input  type="text" id="autocomplete" name="address" value="<%=place.get('address')%>">
+      </div>
+      <input type="hidden" name="id" value="<%=place.get('id')%>">
+      <input type="hidden" id="lat" name="lat" value="<%=place.get('lat')%>">
+      <input type="hidden" id="lng" name="lng" value="<%=place.get('lng')%>">
+      <hr/>
+      <button type="submit" class="btn btn-primary update btn-block">Update</button>
+    </form>
+      <button class="btn btn-danger delete btn-block">Delete</button>
+  </script>
+
+  <script type="text/template" id="new-place">
+    <form id="new-place-form" onkeypress="return event.keyCode != 13";>
+      <div class="row">
+      <label>Name</label>
+      <input class="pull-right" type="text" name="name" placeholder="What to call this?">
+      </div>
+      <div class="row">
+      <label>Address</label>
+      <input id="autocomplete" type="text" name="address" placeholder="Enter Address" value="">
+      </div>
+      <input type="hidden" id="lat" name="lat" value="">
+      <input type="hidden" id="lng" name="lng" value="">
+      <hr/>
+      <button type="submit" class="btn btn-primary update">Create</button>
+      <a href="#/"><img id="x-back"  src="img/wrong3.png"></a>
+    </form>
+  </script>
+
+  <script type="text/template" id="places-list">
+    <h4>My Locations</h4>
+    <hr/>
+    <%_.each(places, function(place){%>
+      <p class="place" id=<%=place.id%>><%=place.get('name')%><a href="#/places/edit/<%=place.id%>"><span class="glyphicon glyphicon-pencil pull-right"></span></a></p>
+    <%});%>
+    <hr/>
+    <button type="button" id="all-markers" class="btn btn-default btn-sm center-block">Display All</button>
+    <a href="#/places/new"><button type="button" id="create-new-place" class="btn btn-default btn-sm center-block">Create New</button></a>
+  </script>
+
+</head>
+<body>
+  <div class="container">
+    <h1>World Zone</h1>
+    <hr/>
+    <div id="map-container">
+      <div id="map-canvas"></div>
+      <div id="location-list">
+      </div>
+    </div>
+    
+  </div>
+</body>
+ 
+
+  
+
+</html>
+<a  href="#/places/<%=place.id%>"></a>
