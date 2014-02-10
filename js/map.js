@@ -21,49 +21,42 @@ var Gmap = {
     });
     this.map.setCenter(location)
     this.map.setZoom(15)
-  this.markers.push(marker);
-},
+    this.markers.push(marker);
+  },
 
-setAllBounds: function (map) {
-  var bounds = new google.maps.LatLngBounds();
-  for (var i = 0; i < this.markers.length; i++) {
-    bounds.extend(this.markers[i].getPosition());
+  setAllBounds: function (map) {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < this.markers.length; i++) {
+      bounds.extend(this.markers[i].getPosition());
+    }
+    Gmap.map.fitBounds(bounds)
+  },
+
+
+  setAllMap: function (map) {
+    for (var i = 0; i < this. markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  },
+
+  clearMarkers: function () {
+    this.setAllMap(null);
+    this.markers = []
+  },
+
+  assignAutoComplete: function(){
+    var autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{ types: ['geocode'] });
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      Gmap.goToAddress(autocomplete);
+    });
+  },
+
+  goToAddress: function(autocomplete){
+    var place = autocomplete.getPlace();
+    var location = place.geometry.location
+    Gmap.clearMarkers();
+    Gmap.addPlaceMarker(location)
+    $('#lat').val(location.lat())
+    $('#lng').val(location.lng())
   }
-  Gmap.map.fitBounds(bounds)
-},
-
-
-setAllMap: function (map) {
-  for (var i = 0; i < this. markers.length; i++) {
-    this.markers[i].setMap(map);
   }
-},
-
-clearMarkers: function () {
-  this.setAllMap(null);
-  this.markers = []
-},
-
-assignAutoComplete: function(){
-  var autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{ types: ['geocode'] });
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    Gmap.goToAddress(autocomplete);
-  });
-},
-
-goToAddress: function(autocomplete){
-  var place = autocomplete.getPlace();
-  var location = place.geometry.location
-  Gmap.clearMarkers();
-  Gmap.addPlaceMarker(location)
-  $('#lat').val(location.lat())
-  $('#lng').val(location.lng())
-}
-
-
-
-
-
-
-
-}

@@ -167,11 +167,3 @@ $(function(){
   Gmap.initialize();
   Backbone.history.start();
 });
-
-
-
-
-
-
-
-
