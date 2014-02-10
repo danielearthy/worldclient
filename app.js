@@ -26,11 +26,10 @@ $.fn.serializeObject = function() {
 // });
 
 var Places = Backbone.Collection.extend({
-  url:'http://localhost:3000/places'
+  url:'http://boiling-reef-7424.herokuapp.com/places'
 })
-
 var Place = Backbone.Model.extend({
-  urlRoot:'http://localhost:3000/places'
+  urlRoot:'http://boiling-reef-7424.herokuapp.com/places'
 })
 
 var CreatePlace = Backbone.View.extend({
