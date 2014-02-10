@@ -18,13 +18,6 @@ $.fn.serializeObject = function() {
   return o;
 };
 
-
-
-
-// $.ajaxPrefilter( function(options, originalOptions, jqXHR){
-//   options.url = '//localhost:3000' +options.url;
-// });
-
 var Places = Backbone.Collection.extend({
   url:'http://boiling-reef-7424.herokuapp.com/places'
 })
@@ -142,19 +135,6 @@ var PlacesList = Backbone.View.extend({
   }
 })
 
-
-
-
-var Home = Backbone.View.extend({
-  el: '#location-list',
-  render: function(){
-    var template = _.template($('#home-controls').html())
-    this.$el.html(template)
-  }
-})
-
-
-
 $(function(){
 
 
@@ -166,11 +146,9 @@ $(function(){
   }
 });
 
-  var home = new Home();
   var placesList = new PlacesList();
   var editPlace = new EditPlace();
   var createPlace = new CreatePlace();
-
 
   router = new Router();
 
@@ -196,29 +174,4 @@ $(function(){
 
 
 
-
-
-
-
-
-// var PlaceMarker = Backbone.View.extend({
-//   el: '#map-canvas',
-//   render : function(options){
-//     var place = new Place({id: options.id})
-//     place.fetch({
-//       success: function(place){
-//         var location = new google.maps.LatLng(place.get('lat'), place.get('lng'))
-//         var template = _.template($('#info-window').html(), {place: place})
-//         Gmap.clearMarkers();
-//         Gmap.addPlaceMarker(location,template)      
-//       } 
-//     })
-//   },
-//   events: {
-//     'click .update': 'updatePlace'
-//   },
-
-//   updatePlace: function(){
-//     console.log("updating Place")
-//   }
 
