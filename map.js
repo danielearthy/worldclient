@@ -21,9 +21,6 @@ var Gmap = {
     });
     this.map.setCenter(location)
     this.map.setZoom(15)
-    // google.maps.event.addListener(marker, 'click', function() {
-    //   infowindow.open(this.map, marker);
-    // });
   this.markers.push(marker);
 },
 

@@ -37,15 +37,15 @@
     <form id="edit-place-form" onkeypress="return event.keyCode != 13";>
       <div class="row">
       <label>Name</label>
-      <input class="pull-right" type="text" name="name" value="<%=place.get('name')%>">
+      <input class="pull-right" type="text" name="name" value="<%-place.get('name')%>">
       </div>
       <div class="row">
       <label>Address</label>
-      <input  type="text" id="autocomplete" name="address" value="<%=place.get('address')%>">
+      <input  type="text" id="autocomplete" name="address" value="<%-place.get('address')%>">
       </div>
-      <input type="hidden" name="id" value="<%=place.get('id')%>">
-      <input type="hidden" id="lat" name="lat" value="<%=place.get('lat')%>">
-      <input type="hidden" id="lng" name="lng" value="<%=place.get('lng')%>">
+      <input type="hidden" name="id" value="<%-place.get('id')%>">
+      <input type="hidden" id="lat" name="lat" value="<%-place.get('lat')%>">
+      <input type="hidden" id="lng" name="lng" value="<%-place.get('lng')%>">
       <hr/>
       <button type="submit" class="btn btn-primary update btn-block">Update</button>
     </form>
@@ -74,7 +74,7 @@
     <h4>My Locations</h4>
     <hr/>
     <%_.each(places, function(place){%>
-      <p class="place" id=<%=place.id%>><%=place.get('name')%><a href="#/places/edit/<%=place.id%>"><span class="glyphicon glyphicon-pencil pull-right"></span></a></p>
+      <p class="place" id=<%-place.id%>><%-place.get('name')%><a href="#/places/edit/<%-place.id%>"><span class="glyphicon glyphicon-pencil pull-right"></span></a></p>
     <%});%>
     <hr/>
     <button type="button" id="all-markers" class="btn btn-default btn-sm center-block">Display All</button>
@@ -83,20 +83,14 @@
 
 </head>
 <body>
-  <div class="container">
-    <h1>World Zone</h1>
-    <hr/>
     <div id="map-container">
       <div id="map-canvas"></div>
-      <div id="location-list">
-      </div>
+      <div id="location-list"></div>
     </div>
-    
-  </div>
 </body>
  
 
   
 
 </html>
-<a  href="#/places/<%=place.id%>"></a>
+<a  href="#/places/<%-place.id%>"></a>
