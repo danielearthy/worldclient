@@ -143,8 +143,8 @@ $(function(){
       '': 'places',
       'places/edit/:id': 'editPlace',
       'places/new' : 'createPlace'
-  }
-});
+    }
+  });
 
   var placesList = new PlacesList();
   var editPlace = new EditPlace();
